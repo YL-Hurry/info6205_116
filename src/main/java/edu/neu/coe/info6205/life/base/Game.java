@@ -1,13 +1,5 @@
 package edu.neu.coe.info6205.life.base;
 
-import edu.neu.coe.info6205.life.library.Library;
-import io.jenetics.*;
-import io.jenetics.engine.Engine;
-import io.jenetics.engine.EvolutionResult;
-import io.jenetics.util.Factory;
-
-
-import java.sql.SQLOutput;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Objects;
@@ -119,31 +111,10 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
         GetString g = new GetString();
         String pat = g.randomString();
 
-				/*//System.out.println("Game of Life with starting pattern: " + patternName);
-				//final String pattern = Library.get(patternName);
-                System.out.println(pat);
-                String[] pats=new String[100];
-                Behavior f=null;
-                String fp = null;
-                for(int i=0;i<pats.length;i++){
-                	pats[i]=g.randomString();
-                	Behavior n=run(0L, pats[i]);
-                	if(i==0){
-                		f=n;
-                		fp=pats[i];
-					}else if(n.generation>=f.generation){
-                		f=n;
- 						fp=pats[i];
-                	}
-				}*/
-
-
-        //System.out.println("Ending Game of Life after " + f + " generations");
-        //System.out.println(fp);
         int chromonumber = 500;
         long bestGeneration = 0;
 
-        Gene gene = new Gene(null);
+        Gene gene = new Gene();
 
 
 		Chromosome bestChromo;
