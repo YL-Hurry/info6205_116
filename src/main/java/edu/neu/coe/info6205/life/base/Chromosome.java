@@ -10,7 +10,8 @@ public class Chromosome {
         this.gene_y = y.clone();
     }
     public String getChromesome(){
-        String[] s=new String[this.gene_x.length];
+        int length = this.gene_x.length > this.gene_y.length ? this.gene_x.length : this.gene_y.length;
+        String[] s=new String[length];
         for(int i=0;i<this.gene_x.length;i++){
             int x =this.gene_x[i];
             int y =this.gene_y[i];

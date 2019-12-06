@@ -143,7 +143,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
         int chromonumber = 500;
         long bestGeneration = 0;
 
-        Gene gene = new Gene();
+        Gene gene = new Gene(null);
 
 
 		Chromosome bestChromo;
@@ -155,35 +155,42 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		for (int i = 0; i < chromonumber; i++) {
 			chromosomes[i] = new Chromosome(gene.getRandomGene(), gene.getRandomGene());
 		}
-		bestChromo = game.fitness(chromosomes);
+		bestChromo = game.select(chromosomes);
 		bestBehavior = game.map.get(bestChromo);
 
-		while (true) {
+		while (d<500) {
 			d+=1;
-			if (bestBehavior.reason == 1) {
+			if (bestBehavior.reason == 2) {//if the generations>1000, we find it
 				break;
 			}
 			for (int i = 0; i < chromonumber; i++) {
 				chromosomes[i] = new Chromosome(gene.evolution(bestChromo.gene_x), gene.evolution(bestChromo.gene_y));
 			}
-			bestChromo = game.fitness(chromosomes);
+			bestChromo = game.select(chromosomes);
 			bestBehavior = game.map.get(bestChromo);
 		}
 
         System.out.println("-------------------");
         System.out.println(bestBehavior);
-        System.out.println(bestBehavior.reason);
-		System.out.println(d);
-		System.out.println(bestChromo.getChromesome());
+        System.out.println("terminate reason:"+bestBehavior.reason);
+		System.out.println("after growth:" + d);
+		System.out.println("the best patten is:"+bestChromo.getChromesome());
     }
-
-    public Chromosome fitness(Chromosome[] chromosomes) {
+    /**
+     * select the best chromosome
+     *
+     * @param chromosomes the array of all canditate chromosomes
+     * @return the bestChromosome which has the most generations in behavior
+     */
+    public Chromosome select(Chromosome[] chromosomes) {
         long bestGeneration = 0L;
         Behavior bestBehavior=null;
         Chromosome bestChromo=null;
         for (Chromosome c : chromosomes) {
             Behavior behavior = run(0L, c.getChromesome());
-            if (behavior.generation >= bestGeneration) {
+
+            // compare with the best one
+            if (fitness(c) >= bestGeneration) {
                 bestBehavior = behavior;
                 bestGeneration = behavior.generation;
                 bestChromo = c;
@@ -192,7 +199,15 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
         map.put(bestChromo,bestBehavior);
         return bestChromo;
     }
-
+    /**
+     * calculate the fitness for chromosome
+     *
+     * @param chromosome  a chromosomo
+     * @return the generation in behavior
+     */
+    public long fitness(Chromosome chromosome){
+        return run(0L,chromosome.getChromesome()).generation;
+    }
     /**
      * Run the game starting with pattern.
      *
