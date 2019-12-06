@@ -129,30 +129,35 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		}
 		bestChromo = game.select(chromosomes);
 		bestBehavior = game.map.get(bestChromo);
-        behaviors[0] = bestBehavior;
 
-		while ( d < 500) {
-			d+=1;
-			if (bestBehavior.reason == 2) {//if the generations>=1000, we find it
-				break;
-			}
-			for (int i = 0; i < chromonumber; i++) {
+		while ( d <= 100) {
+
+            behaviors[d-1] = bestBehavior;
+
+            if (bestBehavior.reason == 2) {//if the generations>=1000, we find it
+                break;
+            }
+
+            d++;
+
+            for (int i = 0; i < chromonumber; i++) {
 				chromosomes[i] = new Chromosome(gene.evolution(bestChromo.gene_x), gene.evolution(bestChromo.gene_y));
 			}
+
 			bestChromo = game.select(chromosomes);
 			bestBehavior = game.map.get(bestChromo);
-			behaviors[d-1] = bestBehavior;
-		}
 
+		}
+        d--;
         System.out.println("-------------------");
         System.out.println(bestBehavior);
         System.out.println("terminate reason:"+bestBehavior.reason);
 		System.out.println("after growth:" + d);
 		System.out.println("the best patten is:"+bestChromo.getChromesome());
-        /* for (Behavior value : behaviors) {
+         for (Behavior value : behaviors) {
             if(value==null)break;
             System.out.println(value.generation);
-        }*/
+        }
     }
     /**
      * select the best chromosome

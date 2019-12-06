@@ -4,7 +4,7 @@ public class Gene {
     private int[] gene;
 
     public Gene(int[] gene){
-        this.gene=gene;
+        this.gene = gene;
     }
 
     public Gene(){}
@@ -18,7 +18,7 @@ public class Gene {
         int length = 10;
         int[] genes = new int[length];
         for (int i = 0; i < genes.length; i++) {
-            int g = (int) (Math.random() * 20) - 10;
+            int g = (int) (Math.random() * 40) - 20;
             genes[i] = g;
         }
         return genes;
