@@ -116,6 +116,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 
         Gene gene = new Gene();
 
+        Behavior[] behaviors = new Behavior[500];
 
 		Chromosome bestChromo;
 		Behavior bestBehavior = null;
@@ -128,10 +129,11 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		}
 		bestChromo = game.select(chromosomes);
 		bestBehavior = game.map.get(bestChromo);
+        behaviors[0] = bestBehavior;
 
-		while (d<500) {
+		while ( d < 500) {
 			d+=1;
-			if (bestBehavior.reason == 2) {//if the generations>1000, we find it
+			if (bestBehavior.reason == 2) {//if the generations>=1000, we find it
 				break;
 			}
 			for (int i = 0; i < chromonumber; i++) {
@@ -139,6 +141,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 			}
 			bestChromo = game.select(chromosomes);
 			bestBehavior = game.map.get(bestChromo);
+			behaviors[d-1] = bestBehavior;
 		}
 
         System.out.println("-------------------");
@@ -146,6 +149,10 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
         System.out.println("terminate reason:"+bestBehavior.reason);
 		System.out.println("after growth:" + d);
 		System.out.println("the best patten is:"+bestChromo.getChromesome());
+        /* for (Behavior value : behaviors) {
+            if(value==null)break;
+            System.out.println(value.generation);
+        }*/
     }
     /**
      * select the best chromosome

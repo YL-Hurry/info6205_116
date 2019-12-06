@@ -15,10 +15,10 @@ public class Gene {
 
     //get the first generation gene
     public int[] getRandomGene() {
-        int length = 20;
+        int length = 10;
         int[] genes = new int[length];
         for (int i = 0; i < genes.length; i++) {
-            int g = (int) (Math.random() * 40) - 20;
+            int g = (int) (Math.random() * 20) - 10;
             genes[i] = g;
         }
         return genes;
@@ -33,6 +33,7 @@ public class Gene {
         } else if (g[i] < 0) {
             g[i] += ((int) Math.random() * 10 + 1);
         }
+
         // set the mutation
         double mutateProbility = 0.05+Math.random()*0.05;
         if (Math.random() < mutateProbility) {
@@ -45,7 +46,7 @@ public class Gene {
     //mutation
     public int[] mutate(int[] g) {
         int i = (int) Math.random() * (g.length);
-        g[i] += (int) (Math.random() * 40) - 20;
+        g[i] += (int) (Math.random() * 20) - 10;
         return g;
     }
 }
