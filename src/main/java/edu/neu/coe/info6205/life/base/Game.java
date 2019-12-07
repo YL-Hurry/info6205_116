@@ -108,9 +108,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
      */
     public static void main(String[] args) throws CloneNotSupportedException {
         //String patternName = args.length > 0 ? args[0] : "Blip";
-        GetString g = new GetString();
-        String pat = g.randomString();
-
+        //one population contains 500 chromosomes
         int chromonumber = 500;
         long bestGeneration = 0;
 
@@ -121,6 +119,7 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
 		Chromosome bestChromo;
 		Behavior bestBehavior = null;
 		Game game = new Game();
+		//d is the growing generation of one population
 		int d=1;
 
 		Chromosome[] chromosomes = new Chromosome[chromonumber];
@@ -151,9 +150,9 @@ public class Game implements Generational<Game, Grid>, Countable, Renderable {
         d--;
         System.out.println("-------------------");
         System.out.println(bestBehavior);
-        System.out.println("terminate reason:"+bestBehavior.reason);
-		System.out.println("after growth:" + d);
-		System.out.println("the best patten is:"+bestChromo.getChromesome());
+        System.out.println("terminate reason: "+bestBehavior.reason);
+		System.out.println("after growth: " + d);
+		System.out.println("the best patten is: "+bestChromo.getChromesome());
          for (Behavior value : behaviors) {
             if(value==null)break;
             System.out.println(value.generation);
