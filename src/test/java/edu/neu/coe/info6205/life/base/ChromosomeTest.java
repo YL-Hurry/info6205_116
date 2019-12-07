@@ -11,6 +11,7 @@ public class ChromosomeTest {
         int[] x={1,1,2,2};
         int[] y={1,2,2,1};
         Chromosome chromosome= new Chromosome(x,y);
+        //create a chromosome, build gene
         assertEquals("1 1, 1 2, 2 2, 2 1",chromosome.getChromesome());
     }
 }

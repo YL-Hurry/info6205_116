@@ -27,7 +27,35 @@ public class GeneTest {
         for(int a=0;a<gene.getGene().length;a++){
             after[a]=gene.getGene()[a];
         }
+        //evolute gene
         after=gene.evolution(after);
+        //compare, if after evolution, gene change return true
+        for(int i=0;i<gene.getGene().length;i++){
+            if(after[i]!=x[i]){
+                flag=true;
+                break;
+            }
+        }
+        //print 2 genes
+        for(int j:gene.getGene()){System.out.print(j);}
+        System.out.println("");
+        for(int k:after){System.out.print(k);}
+
+        assertTrue(flag);
+    }
+
+    @Test
+    public void textMutation(){
+        int[] x={1,1,2,2};
+        Gene gene=new Gene(x);
+        boolean flag = false;
+        int[] after = new int[gene.getGene().length];
+        for(int a=0;a<gene.getGene().length;a++){
+            after[a]=gene.getGene()[a];
+        }
+        //evolute gene
+        after=gene.mutate(after);
+        //compare, if after evolution, gene change return true
         for(int i=0;i<gene.getGene().length;i++){
             if(after[i]!=x[i]){
                 flag=true;
@@ -40,6 +68,5 @@ public class GeneTest {
         for(int k:after){System.out.print(k);}
 
         assertTrue(flag);
-
     }
 }
