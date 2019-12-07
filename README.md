@@ -1,6 +1,6 @@
-## info6205_116
+## INFO6205_116
 
-##Introduction
+#Introduction
 
 #Genetic Algorithm
 In computer science and operations research, a genetic algorithm is a metaheuristic inspired by the process of natural selection that belongs to the larger class of evolutionary algorithms. Genetic algorithms are commonly used to generate high-quality solutions to optimization and search problems by relying on bio-inspired operators such as mutation, crossover and selection. In this project, what we need is to understand how genetic algorithm and use it in problem solving.
