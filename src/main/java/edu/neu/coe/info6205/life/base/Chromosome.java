@@ -9,6 +9,7 @@ public class Chromosome {
         this.gene_x = x.clone();
         this.gene_y = y.clone();
     }
+    //a chromosome is combined by two genes
     public String getChromesome(){
         int length = this.gene_x.length > this.gene_y.length ? this.gene_x.length : this.gene_y.length;
         String[] s=new String[length];
