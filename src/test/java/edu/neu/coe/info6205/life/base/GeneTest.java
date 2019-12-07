@@ -23,14 +23,22 @@ public class GeneTest {
         int[] x={1,1,2,2};
         Gene gene=new Gene(x);
         boolean flag = false;
-        int[] after=gene.evolution(gene.getGene());
-
+        int[] after = new int[gene.getGene().length];
+        for(int a=0;a<gene.getGene().length;a++){
+            after[a]=gene.getGene()[a];
+        }
+        after=gene.evolution(after);
         for(int i=0;i<gene.getGene().length;i++){
-            if(after[i]==gene.getGene()[i]){
+            if(after[i]!=x[i]){
                 flag=true;
                 break;
             }
         }
+        for(int j:gene.getGene()){System.out.print(j);}
+
+        System.out.println("");
+        for(int k:after){System.out.print(k);}
+
         assertTrue(flag);
 
     }
