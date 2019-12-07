@@ -15,6 +15,7 @@ public class Gene {
 
     //get the first generation gene
     public int[] getRandomGene() {
+        //length represents the length of gene
         int length = 10;
         int[] genes = new int[length];
         for (int i = 0; i < genes.length; i++) {
