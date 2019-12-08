@@ -4,10 +4,10 @@ Northeastern University Computer System Engineering INFO6205 Final Project.
 
 ## Table of Contents
 
-- [Introduction](#introduction)
-- [Background](#background)
+- [Introduction](#Introduction)
+- [Background](#Background)
 - [Result](#Result)
-- [Contributor](#contributor)
+- [Contributor](#Contributor)
 
 ## Introduction
 
